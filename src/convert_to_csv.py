@@ -59,7 +59,7 @@ def save_restaurants_csv(restaurants):
   print("Saved!")
 
 def save_user_reviews_csv(user_reviews):
-   """""
+  """""
     Save users, reviews collection into a csv file
     
     Parameters
@@ -74,15 +74,17 @@ def save_user_reviews_csv(user_reviews):
   """
 
   # convert into dataframe
-  user_reviews_df = pd.DataFrame(list(users.find()))
+  user_reviews_df = pd.DataFrame(list(user_reviews.find()))
   # break up dataframe into users table and reviews table
   users_df = get_users_dataframe(user_reviews_df)
   reviews_df = get_reviews_dataframe(user_reviews_df)
-  # remove duplicate restaurants
-  restaurants_df.drop_duplicates(inplace=True)
   # store into csv
-  print("Saving restaurants dataframe into csv format!")
-  restaurants_df.to_csv('data/restaurants.csv', ",")
+  print("Saving users dataframe into csv format!")
+  users_df.to_csv('data/users.csv', ",")
+  print("Saved!")
+
+  print("Saving reviews dataframe into csv format!")
+  reviews_df.to_csv('data/reviews.csv', ",")
   print("Saved!")
 
 def get_users_dataframe(user_reviews_df):
