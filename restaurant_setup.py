@@ -131,6 +131,7 @@ class RestaurantSetup():
           item['city'] = location.split(",")[0]
           item['state'] = location.split(", ")[1].split(" ")[0]
           item['zipcode'] = location.split(", ")[1].split(" ")[-1]
+        item['description'] = ""
         attribute_button = rps.driver.find_elements_by_xpath("//p[contains(text(),'Attributes')]")
         if attribute_button:
           attribute_button[0].click()
