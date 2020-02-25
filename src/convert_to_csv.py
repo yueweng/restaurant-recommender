@@ -107,7 +107,7 @@ def get_users_dataframe(user_reviews_df):
       user[att] = user_reviews_df[att]
 
   users_df = pd.DataFrame(user)
-  users_df.drop_duplicates(inplace=True)
+  users_df.drop_duplicates(subset='userid', keep='first', inplace=True)
   return users_df
 
 def get_reviews_dataframe(user_reviews_df):

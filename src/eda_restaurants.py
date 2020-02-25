@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from src.methods import create_dataframe
 
 def get_restaurants_df():
-  """""
+  """
     Get restaurants dataframe from csv file
     
     Parameters
@@ -21,7 +21,7 @@ def get_restaurants_df():
   return restaurants_df
   
 def neighborhood_dynamics(restaurants_df):
-  """""
+  """
     Plot Neighborhood Dynamics Graph
     
     Parameters
@@ -39,7 +39,7 @@ def neighborhood_dynamics(restaurants_df):
   plot_neighborhood_popularity(neighborhood_group)
 
 def plot_neighborhood_popularity(neighborhood_group, n=25):
-  """""
+  """
     Plot Popularity of restaurants based on Neighborhood
     
     Parameters
@@ -69,7 +69,7 @@ def plot_neighborhood_popularity(neighborhood_group, n=25):
   plt.savefig('images/popularity_neighborhood.png')
 
 def plot_restaurant_ratings(restaurants_df):
-  """""
+  """
     Plot Num of Restaurants based on Ratings of Restaurants
     
     Parameters
@@ -95,7 +95,7 @@ def plot_restaurant_ratings(restaurants_df):
   plt.savefig('images/restaurants_ratings.png')
 
 def factors_overview(restaurants_df):
-  """""
+  """
     Look into Different Factors and Plot Graph against Restaurants and Popularity
     
     Parameters
@@ -107,19 +107,38 @@ def factors_overview(restaurants_df):
     None
     
   """
-  s = restaurants_df['ambience'].str.split(", ")
-  ambience_dummies, ambience_cols = get_ambience_info(s)
+  
+  
   rest_att = ['_id', 'title', 'price', 'stars', 'reviewCount']
   rest_condensed_df = create_dataframe(rest_att, restaurants_df)
-  ambience_df = pd.concat([rest_condensed_df, ambience_dummies], axis=1)
-
-  ambience_restaurants(ambience_cols, ambience_df)
-  ambience_popularity(ambience_cols, ambience_df)
+  
+  ambience_overview(restaurants_df, rest_condensed_df)
   noise_overview(restaurants_df, rest_condensed_df)
   alcohol_overview(restaurants_df, rest_condensed_df)
+  cuisines_overview(restaurants_df, rest_condensed_df)
+
+def ambience_overview(restaurants_df, rest_condensed_df):
+  """
+    Get review counts of restaurants with respective ambience and plot graph
+    
+    Parameters
+    ----------
+    restaurants_df: DataFrame
+    rest_condensed_df: DataFrame
+
+    Returns
+    -------
+    None
+    
+  """
+  s = restaurants_df['ambience'].str.split(", ")
+  ambience_dummies, ambience_cols = get_ambience_info(s)
+  ambience_df = pd.concat([rest_condensed_df, ambience_dummies], axis=1)
+  ambience_restaurants(ambience_cols, ambience_df)
+  ambience_popularity(ambience_cols, ambience_df)
   
 def ambience_restaurants(ambience_cols, ambience_df):
-  """""
+  """
     Get count of restaurants with respective ambience and plot graph
     
     Parameters
@@ -143,7 +162,7 @@ def ambience_restaurants(ambience_cols, ambience_df):
   plot_ambience_overview(amb_df)
 
 def ambience_popularity(ambience_cols, ambience_df):
-  """""
+  """
     Get count of reviews with respective ambience and plot grpah
     
     Parameters
@@ -165,7 +184,7 @@ def ambience_popularity(ambience_cols, ambience_df):
   plot_ambience_popularity(ambrvco_df)   
 
 def get_ambience_info(s):
-  """""
+  """
     Get Dummified Ambience Cols
     
     Parameters
@@ -183,7 +202,7 @@ def get_ambience_info(s):
   return ambience_dummies, ambience_cols
     
 def plot_ambience_overview(amb_df):
-  """""
+  """
     Plot Ambience Breakdown vs Num of Restaurants
     
     Parameters
@@ -208,7 +227,7 @@ def plot_ambience_overview(amb_df):
   plt.savefig('images/ambience_overview.png')
 
 def plot_ambience_popularity(ambrvco_df):
-  """""
+  """
     Plot Popularity of Restaurants based on Ambience
     
     Parameters
@@ -233,7 +252,7 @@ def plot_ambience_popularity(ambrvco_df):
   plt.savefig('images/ambience_popularity.png')
 
 def noise_overview(restaurants_df, rest_condensed_df):
-  """""
+  """
     Get review counts of restaurants with respective noise level and plot graph
     
     Parameters
@@ -254,7 +273,7 @@ def noise_overview(restaurants_df, rest_condensed_df):
   plot_noise_popularity(nl_df)
 
 def alcohol_overview(restaurants_df, rest_condensed_df):
-  """""
+  """
     Get count of restaurants with respective alcohol value and plot graph
     
     Parameters
@@ -273,7 +292,7 @@ def alcohol_overview(restaurants_df, rest_condensed_df):
   plot_alcohol_popularity_graph(al_df)
 
 def noise_popularity(noise_cols, noise_df):
-  """""
+  """
     Get noise level dataframe
     
     Parameters
@@ -297,7 +316,7 @@ def noise_popularity(noise_cols, noise_df):
   return nl_df
 
 def get_alcohol_popularity(restaurants_df, alcohol_df):
-  """""
+  """
     Get alcohol dataframe from restaurants dataframe
     
     Parameters
@@ -322,7 +341,7 @@ def get_alcohol_popularity(restaurants_df, alcohol_df):
   return al_df
 
 def plot_noise_popularity(nl_df):
-  """""
+  """
     Plot Noise Level vs Num of Reviews
     
     Parameters
@@ -347,7 +366,7 @@ def plot_noise_popularity(nl_df):
   plt.savefig('images/noise_popularity.png')
 
 def plot_alcohol_popularity_graph(al_df):
-  """""
+  """
     Plot Alcohol vs Num of Reviews
     
     Parameters
@@ -370,6 +389,62 @@ def plot_alcohol_popularity_graph(al_df):
   plt.tick_params(axis='y', which='major', labelsize=15)
 
   plt.savefig('images/alcohol_popularity.png')
+
+def cuisines_overview(restaurants_df, rest_condensed_df):
+  """
+    Breakdown of Cusines based on Popularity and plot graph
+    
+    Parameters
+    ----------
+    restaurants_df: DataFrame
+    rest_condensed_df: DataFrame
+
+    Returns
+    -------
+    None
+    
+  """
+  cuis = restaurants_df['cuisines'].str.split(", ")
+  cuisines_dummies = pd.get_dummies(cuis.apply(pd.Series).stack()).sum(level=0)
+  cui_cols = cuisines_dummies.columns
+
+  cuisine_df = pd.concat([rest_condensed_df, cuisines_dummies], axis=1)
+
+  cs = {}
+  for col in cui_cols:
+      cui_rev = cuisine_df.groupby(col).agg({'reviewCount': 'sum'}).reset_index()
+      cs[col] = cui_rev[cui_rev[col] == 1.0]['reviewCount'][1]
+
+  cuirevco_df = pd.DataFrame(list(cs.items()), columns=['Cuisines', 'Popularity'])
+  cuirevco_df.sort_values(by=['Popularity'], ascending=False, inplace=True)
+  plot_cuisines_popularity_graph(cuirevco_df)
+
+def plot_cuisines_popularity_graph(cuirevco_df, n=25):
+  """
+    Plot Cuisines vs Num of Reviews
+    
+    Parameters
+    ----------
+    cuirevco_df: DataFrame
+    n: number of cuisines (Int)
+
+    Returns
+    -------
+    None
+    
+  """
+  fig, ax = plt.subplots(figsize=[20,10])
+  cuisines_top_n = cuirevco_df[:n]
+  cuisines_top_n.sort_values('Popularity', inplace=True)
+  ax.barh(cuisines_top_n['Cuisines'], cuisines_top_n['Popularity'])
+
+  ax.set_title('Cuisines by Popularity', fontsize=20, pad=20)
+  ax.set_xlabel('Num of Reviews', fontsize=20)
+  ax.set_ylabel('Cuisines', fontsize=20)
+
+  plt.tick_params(axis='x', which='major', labelsize=18)
+  plt.tick_params(axis='y', which='major', labelsize=15)
+  plt.savefig('images/cusines_popularity.png')
 
 restaurants_df = get_restaurants_df()
 neighborhood_dynamics(restaurants_df)
