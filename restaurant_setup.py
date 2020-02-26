@@ -13,7 +13,6 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from pymongo import MongoClient
 import time
-from restaurant_page_setup import RestaurantPageSetup
 
 class RestaurantSetup():
     def __init__(self, url):
@@ -31,13 +30,13 @@ class RestaurantSetup():
     def get_restaurant_list(self, pages):
       li = []
       for p in range(pages):
-        time.sleep(20)
         start = 30*p
         url = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=San%20Francisco%2C%20CA&ns=1&start=" + str(start)
+        print(url)
         r_url = requests.get(url, headers={'user-agent': 'Mozilla/5.0'})
         rsoup = BeautifulSoup(r_url.content, "html")
         container_div = rsoup.findAll("div", {"class": "container__373c0__ZB8u4"})
-        
+        print(container_div)
         for container in container_div:
           ind_rest = {}
           alink = container.find("a", {"class": "lemon--a__373c0__IEZFH link__373c0__1G70M link-color--inherit__373c0__3dzpk link-size--inherit__373c0__1VFlE"})
@@ -75,9 +74,9 @@ class RestaurantSetup():
             ind_rest['address'] = None
           ind_rest['neighborhood'] = neighborhood_div.text
           ind_rest['cuisines'] = ", ".join(cuisines)
-
+          print(ind_rest)
           li.append(ind_rest)
-
+        print(li)
       return li
 
     def split_chunks(self, li, restaurants, n=5):
@@ -131,7 +130,7 @@ class RestaurantSetup():
           item['city'] = location.split(",")[0]
           item['state'] = location.split(", ")[1].split(" ")[0]
           item['zipcode'] = location.split(", ")[1].split(" ")[-1]
-        item['description'] = ""
+        business_div = rps.driver.find_elements_by_xpath("//a[contains(text(),'Read more')]")
         attribute_button = rps.driver.find_elements_by_xpath("//p[contains(text(),'Attributes')]")
         if attribute_button:
           attribute_button[0].click()
@@ -162,6 +161,13 @@ class RestaurantSetup():
                   bdiv = rps.driver.find_elements_by_xpath("//span[contains(text(),'" + v + "')]")
                   if bdiv and bdiv[0].find_elements_by_xpath("./following-sibling::span"):
                       item[k] = self.convert_yes_no_to_boolean(bdiv[0].find_element_by_xpath("./following-sibling::span").text.strip())
+        item['description'] = ''
+        if business_div:
+            business_div[0].click()
+            specialties_div = rps.driver.find_elements_by_xpath("//h4[contains(text(), 'Specialties')]")
+            if specialties_div and specialties_div[0].find_elements_by_xpath("../following-sibling::p"):
+                content_div = specialties_div[0].find_elements_by_xpath("../following-sibling::p")
+                item['description'] = content_div[0].text
         print("Inserting...")
         restaurants.insert_one(item)
 
