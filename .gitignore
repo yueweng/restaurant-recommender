@@ -3,6 +3,5 @@
 __pycache__/
 /data
 capstone_script.ipynb
-capstone_eda.ipynb
 capstone_data.ipynb
 capstone.ipynb
