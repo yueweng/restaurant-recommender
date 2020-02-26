@@ -10,10 +10,10 @@ def index():
   return render_template('index.html', li=li.items())
 
 
-def api_root():
-    restaurants_df = get_restaurants_df()
-    li = cosine_similarity_recommendations(restaurants_df, title='Marufuku Ramen SF')
-    return li
+# def api_root():
+#     restaurants_df = get_restaurants_df()
+#     li = cosine_similarity_recommendations(restaurants_df, title='Marufuku Ramen SF')
+#     return li
 
 @app.route('/articles')
 def api_articles():
