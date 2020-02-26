@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from pymongo import MongoClient
 import time
+from restaurant_page_setup import RestaurantPageSetup
 
 class RestaurantSetup():
     def __init__(self, url):
@@ -32,16 +33,14 @@ class RestaurantSetup():
       for p in range(pages):
         start = 30*p
         url = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=San%20Francisco%2C%20CA&ns=1&start=" + str(start)
-        print(url)
         r_url = requests.get(url, headers={'user-agent': 'Mozilla/5.0'})
         rsoup = BeautifulSoup(r_url.content, "html")
-        container_div = rsoup.findAll("div", {"class": "container__373c0__ZB8u4"})
-        print(container_div)
+        container_div = rsoup.findAll("div", {"class": "hoverable__373c0__VqkG7"})
         for container in container_div:
           ind_rest = {}
           alink = container.find("a", {"class": "lemon--a__373c0__IEZFH link__373c0__1G70M link-color--inherit__373c0__3dzpk link-size--inherit__373c0__1VFlE"})
           image_div = container.find("img", {"class": "lemon--img__373c0__3GQUb photo-box-img__373c0__O0tbt"})
-          info_div = container.find("div", {"class": "lemon--div__373c0__1mboc container__373c0__39jSv padding-l2__373c0__1Dr82 border-color--default__373c0__3-ifU text-align--right__373c0__1XDu3"})
+          info_div = container.find("div", {"class": "lemon--div__373c0__1mboc border-color--default__373c0__3-ifU"})
           phone_div = info_div.findAll("p", {"class": "lemon--p__373c0__3Qnnj text__373c0__2Kxyz text-color--black-extra-light__373c0__2OyzO text-align--right__373c0__1f0KI text-size--small__373c0__3NVWO"})[0]
           address_div = info_div.find("span", {"class": "lemon--span__373c0__3997G raw__373c0__3rcx7"})
           neighborhood_div = info_div.findAll("p", {"class": "lemon--p__373c0__3Qnnj text__373c0__2Kxyz text-color--black-extra-light__373c0__2OyzO text-align--right__373c0__1f0KI text-size--small__373c0__3NVWO"})[-1]

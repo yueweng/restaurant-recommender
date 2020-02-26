@@ -20,12 +20,11 @@ def get_restaurants_df():
   restaurants_df.drop(columns=['Unnamed: 0'], inplace=True)
   return restaurants_df
 
-def cosine_similarity_recommendations(restaurants_df):
+def cosine_similarity_recommendations(restaurants_df, title='Noosh'):
   cui = restaurants_df['cuisines'].str.split(", ")
   cuisines_dummies = pd.get_dummies(cui.apply(pd.Series).stack()).sum(level=0)
   cos_sim = cosine_similarity(cuisines_dummies, cuisines_dummies)
 
-  title = 'Noosh'
   print("Restaurant: {}".format(title))
 
   index = restaurants_df[restaurants_df['title'] == title].index
@@ -43,11 +42,14 @@ def cosine_similarity_recommendations(restaurants_df):
   top_n = sort_values[:10]
 
   print("Recommendations")
+  recommendation_list = {}
   for row, value in top_n:
   #     print(value)
-      print(restaurants_df.iloc[row]['title'])
+    recommendation_list[row] = restaurants_df.iloc[row]['title']
+    print(restaurants_df.iloc[row]['title'])
 
   print("-------------------")
+  return recommendation_list
 
 restaurants_df = get_restaurants_df()
-cosine_similarity_recommendations(restaurants_df)
+print(cosine_similarity_recommendations(restaurants_df))
