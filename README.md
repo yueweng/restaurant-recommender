@@ -2,7 +2,7 @@
 
 ### Premise
 
-![](images/restaurants.jpg)
+![](images/restaurant.jpg)
 
 Many people like to dine in SF. I am creating a restaurant recommender that will recommend restaurants based on the name of a restaurant visited.
 
