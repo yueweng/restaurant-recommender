@@ -38,4 +38,4 @@ Here is a graph of the number of reviews based on ratings
 
 
 #### Reviewers by City
-![](images/reviewers_city.png)
+![](images/city_reviewers.png)
