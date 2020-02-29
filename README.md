@@ -45,8 +45,6 @@ Here is a graph of the number of reviews based on ratings
 ### Recommender System
 I built a baseline model, using the content based filtering
 
-![](images/rmse.png)
-
 #### Content Based Filtering
 Restaurants have different properties, e.g. neighborhood, ambience, cuisines, price, noise level etc
 
