@@ -1,24 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import random
-
-def get_users_df():
-  """
-    Get users dataframe from csv file
-    
-    Parameters
-    ----------
-    None
-    
-
-    Returns
-    -------
-    users_df: DataFrame
-    
-  """
-  users_df = pd.read_csv('data/users.csv')
-  users_df.drop(columns=['Unnamed: 0'], inplace=True)
-  return users_df
+from src.methods import get_users_df
 
 def reviewers_by_city(users_df, n=25):
   """

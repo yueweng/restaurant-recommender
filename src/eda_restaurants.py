@@ -1,24 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from src.methods import create_dataframe
-
-def get_restaurants_df():
-  """
-    Get restaurants dataframe from csv file
-    
-    Parameters
-    ----------
-    None
-    
-
-    Returns
-    -------
-    restaurants_df: DataFrame
-    
-  """
-  restaurants_df = pd.read_csv('data/restaurants.csv')
-  restaurants_df.drop(columns=['Unnamed: 0'], inplace=True)
-  return restaurants_df
+from src.methods import create_dataframe, get_restaurants_df
   
 def neighborhood_dynamics(restaurants_df):
   """
