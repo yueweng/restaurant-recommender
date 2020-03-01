@@ -67,7 +67,13 @@ The next 2 recommenders are based on text from the restaurants. One is from the 
 Based on Reviews by the users, I created a similarity matrix and built a recommender based on that. Similarly, I used the description of the restaurants to generate a recommender as well.
 
 ### Challenges
-Collaborative Filtering is one method that I wanted to use. This became a challenge as many reviewers have not been to most of the restaurants listed and the sparcity of the matrix is really huge. This lead to a lack of data needed to generated a collaborative filtering matrix, which leads to incorrect recommendations. 
+Collaborative Filtering is one method that I wanted to use. This became a challenge as many reviewers have not been to most of the restaurants listed and the sparcity of the matrix is really huge. This lead to a lack of data needed to generated a collaborative filtering matrix, which leads to incorrect recommendations.
+
+### Tools Used
+Python, BeautifulSoup, Selenium, Jupyter Notebook, Pandas, MongoDB, Docker, Matplotlib, Flask
+
+### Future Work
+Personalize recommender based on Reviewers. Depending on where the reviewers go, the ratings they rate, I will like to create a personal recommender based on user's profile.
 
 ### Source
 Yelp Website
