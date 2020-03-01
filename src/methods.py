@@ -34,7 +34,7 @@ def get_users_df():
     users_df: DataFrame
     
   """
-  users_df = pd.read_csv('data/users.csv')
+  users_df = pd.read_csv('data/users.csv', encoding='utf-8')
   users_df.drop(columns=['Unnamed: 0'], inplace=True)
   return users_df
 
@@ -94,3 +94,7 @@ def create_dataframe(attributes, original_df):
 
   df = pd.DataFrame(dict_df)
   return df
+
+def get_all_restaurant_names(restaurants_df):
+  return restaurants_df['title'].values.tolist()
+

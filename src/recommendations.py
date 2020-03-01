@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.sparse.linalg import svds
-from methods import get_restaurants_df, get_users_df, get_reviews_df, get_reviews_cond_df
+from methods import get_restaurants_df, get_users_df, get_reviews_df, get_reviews_cond_df, get_all_restaurant_names
 from nltk.corpus import stopwords
 import string
 from nltk.tokenize import sent_tokenize
@@ -45,8 +45,16 @@ def cosine_similarity_recommendations(restaurants_df, title='Noosh', n=10):
   recommendation_list = []
   for ind in indices:
     if ind != index:
-      recommendation_list.append(restaurants_df.iloc[ind]['title'])
-  return recommendation_list
+      recommendation_list.append(restaurants_df.iloc[ind]['_id'])
+  selected_list = restaurants_df[restaurants_df['_id'].isin(recommendation_list)]
+  selected_df = pd.DataFrame({'title': selected_list['title'], \
+                              'image_url': selected_list['image_url'], \
+                              'url': selected_list['url'], \
+                              'price': selected_list['price'], \
+                              'stars': selected_list['stars'], \
+                              'cuisines': selected_list['cuisines'], \
+                              'neighborhood': selected_list['neighborhood']})
+  return selected_df
 
 # def get_list_reviews(reviews_df, title='Noosh', n=10):
 #   res_df = reviews_df.groupby('restaurant_id').agg({"userid": "count"})[5:].reset_index()
@@ -122,21 +130,20 @@ def description_recommender(restaurants_df, title='Noosh', n=10):
 
 n = 20
 restaurants_df = get_restaurants_df()
-users_df = get_users_df()
-reviews_df = get_reviews_df()
-reviews_condensed_df = get_reviews_cond_df()
-ratings_df = get_ratings_df(users_df, reviews_df)
-title = input("Enter a Restaurant:")
+# users_df = get_users_df()
+# reviews_df = get_reviews_df()
+# reviews_condensed_df = get_reviews_cond_df()
+# ratings_df = get_ratings_df(users_df, reviews_df)
 print("                          ")
 print("Recommender 1 Result: ")
 print("---------------------------")
-print(cosine_similarity_recommendations(restaurants_df, title, n))
-print("                          ")
-print("Recommender 2 Result: ")
-print("---------------------------")
-print(reviews_recommender(reviews_df, reviews_condensed_df, title, n))
-print("                          ")
-print("Recommender 3 Result: ")
-print("---------------------------")
-print(description_recommender(restaurants_df, title, n))
+print(cosine_similarity_recommendations(restaurants_df))
+# print("                          ")
+# print("Recommender 2 Result: ")
+# print("---------------------------")
+# print(reviews_recommender(reviews_df, reviews_condensed_df))
+# print("                          ")
+# print("Recommender 3 Result: ")
+# print("---------------------------")
+# print(description_recommender(restaurants_df))
 

@@ -1,5 +1,59 @@
-<div>
-  {%for k, v in li %}
-    <li>{{v}}</li> 
-  {%endfor%}
-</div>
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <!-- <script src="{{ url_for('static',filename='js/jquery-latest.js') }}"></script> -->
+  <script src="{{ url_for('static',filename='js/tablesorter.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/script.js') }}"></script>
+  <script>
+    $(document).ready(function() {
+      Restaurants.init({{ restaurant_names|safe }})
+    })
+  </script>
+</head>
+<body>
+  <div class='wrapper'>
+    <form class='name-selector' method="POST">
+      <input name="text" placeholder="Enter a Restaurant" class='input-text' />
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+    {% block content %}
+      {% if df is defined %}
+        <table id='restaurants-table'>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Stars</th>
+              <th>Cuisines</th>
+              <th>Neighborhood</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for idx, row in df.iterrows() %}
+            
+              <tr>
+                <td class='img'>
+                  <img src="{{row['image_url']}}" />
+                </td>
+                <td>
+                  <a href="{{row['url']}}">
+                    {{row['title'].decode("utf8")}}
+                  </a>
+                </td>
+                <td>{{row['price']}}</td>
+                <td>{{row['stars']}}</td>
+                <td>{{row['cuisines']}}</td>
+                <td>{{row['neighborhood']}}</td>
+              </tr>
+            {% endfor %}
+           </tbody>
+        </table>
+      {% endif %}
+    {% endblock content %}
+  </div>
+</body>
+
+
