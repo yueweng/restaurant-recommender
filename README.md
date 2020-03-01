@@ -27,16 +27,16 @@ Data Collected:
   **Description**: Description of Restaurant \
 - 312k users\
   **userid**: Id of User\
-  **name**: Name of user
-  **city**: City where user is from
-  **state**: State where user is from
-  **reviews**: Number of Reviews by user
-  **date**: Date when review is written
-  **reviews**: Description of review
+  **name**: Name of user\
+  **city**: City where user is from\
+  **state**: State where user is from\
+  **reviews**: Number of Reviews by user\
+  **date**: Date when review is written\
+  **reviews**: Description of review\
 - 715k reviews\
-  **userid**: Id of User
-  **restaurant_id**: Id of Restaurant
-  **ratings**: Rating user gave to particular restaurant
+  **userid**: Id of User\
+  **restaurant_id**: Id of Restaurant\
+  **ratings**: Rating user gave to particular restaurant\
 
 ### Data Processing
 Content Based Filtering: Using the cuisines column, I dummified the columns into individual columns and combined them with the columns of price and stars, and generate a similarity matrix.
