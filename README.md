@@ -38,9 +38,6 @@ Data Collected:
   **restaurant_id**: Id of Restaurant\
   **ratings**: Rating user gave to particular restaurant\
 
-### Data Processing
-Content Based Filtering: Using the cuisines column, I dummified the columns into individual columns and combined them with the columns of price and stars, and generate a similarity matrix.
-
 ### Workflow
 
 ![](images/workflow.png)
