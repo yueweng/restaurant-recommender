@@ -7,8 +7,9 @@
 Imagine after a stressful day at work, or a late night flight back to San Francisco. You are hungry and have no idea where to go for dinner. There are a few restaurants that you frequent and they are closed or you wanted to try something different. It is difficult to decide on where to go if you have no recommendation system to do that. My goal is to build a recommendation system that will help users recommend a few choices based on some of the restaurants that they love. I will be using different factors, like cuisines, ratings and prices, and Natural Language Processing (NLP) to recommend restaurants for users.
 
 ### Setup
-I scraped the data from Yelp and saved it into a MongoDB database. Once I got the data, I converted the data into a csv format. This file shows the setup: `src/convert_to_csv.py`. 
-EDA: `src/eda_restaurants.py` & `src/eda_users.py`
+I scraped the data from Yelp and saved it into a MongoDB database. Once I got the data, I converted the data into a csv format. 
+This file shows the setup: `src/convert_to_csv.py` \
+EDA: `src/eda_restaurants.py` & `src/eda_users.py` \
 Recommendations: `src/recommendations.py`
 
 ### Data
