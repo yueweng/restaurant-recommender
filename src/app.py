@@ -25,7 +25,7 @@ def my_form_post():
     restaurants_df = get_restaurants_df()
     # reviews_condensed_df = get_reviews_cond_df()
     # reviews_df = get_reviews_df()
-    df = cosine_similarity_recommendations(restaurants_df, title=text)
+    df = cosine_similarity_recommendations(restaurants_df, title=text, n=3)
     # reviewli = reviews_recommender(reviews_df, reviews_condensed_df, title=text)
     # descli = description_recommender(restaurants_df, title=text)
     restaurant_names = get_all_restaurant_names(restaurants_df)

@@ -41,6 +41,10 @@
   width: 100px;
 }
 
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
 .ui-menu.ui-widget {
   background: white;
   border: 1px solid #ddd;
@@ -53,4 +57,9 @@
 .ui-menu.ui-widget li {
   font-size: 18px;
   padding: 15px 20px;
+}
+
+.ui-menu.ui-widget li:hover {
+  background: #ddd;
+  cursor: pointer;
 }
