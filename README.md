@@ -22,6 +22,10 @@ Data Collected:
 ### Data Processing
 Content Based Filtering: Using the cuisines column, I dummified the columns into individual columns and combined them with the columns of price and stars, and generate a similarity matrix.
 
+### Workflow
+
+![](images/workflow.png)
+
 ### EDA
 I grouped the restaurants based on the neighborhood and did an analysis on the number of reviews per neighborhood
 
@@ -67,7 +71,7 @@ The next 2 recommenders are based on text from the restaurants. One is from the 
 Based on Reviews by the users, I created a similarity matrix and built a recommender based on that. Similarly, I used the description of the restaurants to generate a recommender as well.
 
 ### Challenges
-Collaborative Filtering is one method that I wanted to use. This became a challenge as many reviewers have not been to most of the restaurants listed and the sparcity of the matrix is really huge. This lead to a lack of data needed to generated a collaborative filtering matrix, which leads to incorrect recommendations.
+Collaborative Filtering is one method that I wanted to use. This became a challenge as many reviewers have not been to most of the restaurants listed and the sparcity of the matrix is really huge. This lead to a lack of data needed to generate a collaborative filtering matrix, which leads to incorrect recommendations.
 
 ### Tools Used
 Python, BeautifulSoup, Selenium, Jupyter Notebook, Pandas, MongoDB, Docker, Matplotlib, Flask
