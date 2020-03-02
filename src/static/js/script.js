@@ -9,7 +9,7 @@ Restaurants = {
   },
 
   autoComplete: function(restaurant_names) {
-    $(".input-text" ).autocomplete({
+    $(".input-text.restaurant" ).autocomplete({
       source: restaurant_names
     });
   }

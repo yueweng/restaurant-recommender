@@ -1,0 +1,122 @@
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class='page-two-wrapper'>
+    <img class='background-img' src="{{ url_for('static', filename='img/page2.jpg') }}" />
+    <div class='title'>
+      <a href="{{ url_for('index') }}">
+        Restaurants Tonight
+      </a>
+    </div>
+    <div class='recommendation-box'>
+      <div class='text'>
+        The top three recommendations are:
+      </div>
+      {% block content %}
+        {% if df_rec is defined %}
+          {% for idx, row in df_rec.iterrows() %}
+            <div class='rest-div'>
+              <img class='restaurant-img' src="{{row['image_url']}}" />
+              <span class='description'>
+                <div class='restaurant-name'>
+                  <a href="{{row['url']}}">
+                    {{row['title'].decode("utf8")}}
+                  </a>
+                </div>
+                <div class='ambience text'>
+                  <span>Feels like: </span>
+                  <span>{{row['ambience']}}</span>
+                </div>
+                <div class='cuisines text'>
+                  <span>Cuisines: </span>
+                  <span>{{row['cuisines']}}</span>
+                </div>
+              </span>
+              <span class='stars'>
+                <span>{{row['stars']}}</span>
+                <span>Stars</span>
+              </span>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endblock content %}
+    </div>
+    <div class='adventurous-wrapper'>
+      <div class='adventurous-text'>
+        If you are adventurous, try these restaurants!
+      </div>
+      <div class='box-wrapper'>
+        <div class='grey-box'>
+          <div class='text'>
+            Most similar in Cuisines
+          </div>
+          {% if df1_other is defined %}
+            {% for idx, row in df1_other.iterrows() %}
+              <div class='rest-div'>
+                <img class='restaurant-img' src="{{row['image_url']}}" />
+                <span class='description'>
+                  <div class='restaurant-name'>
+                    <a href="{{row['url']}}">
+                      {{row['title'].decode("utf8")}}
+                    </a>
+                  </div>
+                </span>
+                <span class='stars'>
+                  <span>{{row['stars']}}</span>
+                  <span>Stars</span>
+                </span>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class='grey-box'>
+          <div class='text'>
+            Most similar based on Reviewer Comments
+          </div>
+          {% if df2_other is defined %}
+            {% for idx, row in df2_other.iterrows() %}
+              <div class='rest-div'>
+                <img class='restaurant-img' src="{{row['image_url']}}" />
+                <span class='description'>
+                  <div class='restaurant-name'>
+                    <a href="{{row['url']}}">
+                      {{row['title'].decode("utf8")}}
+                    </a>
+                  </div>
+                </span>
+                <span class='stars'>
+                  <span>{{row['stars']}}</span>
+                  <span>Stars</span>
+                </span>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class='grey-box'>
+          <div class='text'>
+            Most similar based on Restaurant Description
+          </div>
+          {% if df3_other is defined %}
+            {% for idx, row in df3_other.iterrows() %}
+              <div class='rest-div'>
+                <img class='restaurant-img' src="{{row['image_url']}}" />
+                <span class='description'>
+                  <div class='restaurant-name'>
+                    <a href="{{row['url']}}">
+                      {{row['title'].decode("utf8")}}
+                    </a>
+                  </div>
+                </span>
+                <span class='stars'>
+                  <span>{{row['stars']}}</span>
+                  <span>Stars</span>
+                </span>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

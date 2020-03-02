@@ -74,6 +74,42 @@ def get_reviews_cond_df():
   reviews_condensed_df.drop(columns=['Unnamed: 0'], inplace=True)
   return reviews_condensed_df
 
+def get_doc_sim():
+  """
+    Get similarity matrix from csv file
+    
+    Parameters
+    ----------
+    None
+    
+
+    Returns
+    -------
+    doc_sim: Numpy Array
+    
+  """
+  doc_sim_df = pd.read_csv('data/doc_sim.csv', encoding='utf-8')
+  doc_sim_df.drop(columns=['Unnamed: 0'], inplace=True)
+  return doc_sim_df.to_numpy()
+
+def get_desc_sim():
+  """
+    Get similarity matrix from csv file
+    
+    Parameters
+    ----------
+    None
+    
+
+    Returns
+    -------
+    desc_sim: Numpy Array
+    
+  """
+  desc_sim_df = pd.read_csv('data/desc_sim.csv', encoding='utf-8')
+  desc_sim_df.drop(columns=['Unnamed: 0'], inplace=True)
+  return desc_sim_df.to_numpy()
+
 def create_dataframe(attributes, original_df):
   """""
     Convert a dataframe into a smaller dataframe with the attributes given

@@ -13,46 +13,29 @@
   </script>
 </head>
 <body>
-  <div class='wrapper'>
-    <form class='name-selector' method="POST">
-      <input name="text" placeholder="Enter a Restaurant" class='input-text' />
-      <button type="submit" class="submit-btn">Submit</button>
-    </form>
-    {% block content %}
-      {% if df is defined %}
-        <table id='restaurants-table'>
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Stars</th>
-              <th>Cuisines</th>
-              <th>Neighborhood</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for idx, row in df.iterrows() %}
-            
-              <tr>
-                <td class='img'>
-                  <img src="{{row['image_url']}}" />
-                </td>
-                <td>
-                  <a href="{{row['url']}}">
-                    {{row['title'].decode("utf8")}}
-                  </a>
-                </td>
-                <td>{{row['price']}}</td>
-                <td>{{row['stars']}}</td>
-                <td>{{row['cuisines']}}</td>
-                <td>{{row['neighborhood']}}</td>
-              </tr>
-            {% endfor %}
-           </tbody>
-        </table>
-      {% endif %}
-    {% endblock content %}
+  <div class='page-one-wrapper'>
+    <div class='overlay'>
+    </div>
+    <div class='restaurants-wrapper'>
+      <div class='grey-box top-box'>
+        Restaurants Tonight
+      </div>
+      <div class="grey-box bottom-box">
+        <div class='words'>
+          Let's get you out of your comfort zone!
+        </div>
+        <form class='name-selector' method="POST">
+          <input name="text" placeholder="Restaurant" class='input-text restaurant'></input>
+          <span class='at'> at </span>
+          <input name='text' placeholder="San Francisco" class='input-text' disabled></input>
+          <button type="submit" class='search'>
+            <img src="{{ url_for('static',filename='img/search.png') }}" />
+          </button>
+          <!-- <button type="submit" class="submit-btn">Submit</button> -->
+        </form>
+      </div>
+    </div>
+    <img src="{{ url_for('static', filename='img/page1.jpg') }}" />
   </div>
 </body>
 
