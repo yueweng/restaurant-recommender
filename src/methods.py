@@ -16,7 +16,7 @@ def get_restaurants_df():
     restaurants_df: DataFrame
     
   """
-  restaurants_df = pd.read_csv('data/restaurants.csv')
+  restaurants_df = pd.read_csv('https://restaurant-recommender-flask.s3.amazonaws.com/restaurants.csv')
   restaurants_df.drop(columns=['Unnamed: 0'], inplace=True)
   return restaurants_df
 
@@ -34,7 +34,7 @@ def get_users_df():
     users_df: DataFrame
     
   """
-  users_df = pd.read_csv('data/users.csv', encoding='utf-8')
+  users_df = pd.read_csv('https://restaurant-recommender-flask.s3.amazonaws.com/users.csv', encoding='utf-8')
   users_df.drop(columns=['Unnamed: 0'], inplace=True)
   return users_df
 
@@ -52,7 +52,7 @@ def get_reviews_df():
     reviews_df: DataFrame
     
   """
-  reviews_df = pd.read_csv('data/reviews.csv', encoding='utf-8', engine='python')
+  reviews_df = pd.read_csv('https://restaurant-recommender-flask.s3.amazonaws.com/reviews.csv', encoding='utf-8', engine='python')
   reviews_df.drop(columns=['Unnamed: 0'], inplace=True)
   return reviews_df
 
@@ -70,7 +70,7 @@ def get_reviews_cond_df():
     reviews_condensed_df: DataFrame
     
   """
-  reviews_condensed_df = pd.read_csv('data/reviews_cond.csv', encoding='utf-8', engine='python')
+  reviews_condensed_df = pd.read_csv('https://restaurant-recommender-flask.s3.amazonaws.com/reviews_cond.csv', encoding='utf-8', engine='python')
   reviews_condensed_df.drop(columns=['Unnamed: 0'], inplace=True)
   return reviews_condensed_df
 
@@ -88,7 +88,7 @@ def get_doc_sim():
     doc_sim: Numpy Array
     
   """
-  doc_sim_df = pd.read_csv('data/doc_sim.csv', encoding='utf-8')
+  doc_sim_df = pd.read_csv('https://restaurant-recommender-flask.s3.amazonaws.com/doc_sim.csv', encoding='utf-8')
   doc_sim_df.drop(columns=['Unnamed: 0'], inplace=True)
   return doc_sim_df.to_numpy()
 
@@ -106,7 +106,7 @@ def get_desc_sim():
     desc_sim: Numpy Array
     
   """
-  desc_sim_df = pd.read_csv('data/desc_sim.csv', encoding='utf-8')
+  desc_sim_df = pd.read_csv('https://restaurant-recommender-flask.s3.amazonaws.com/desc_sim.csv', encoding='utf-8')
   desc_sim_df.drop(columns=['Unnamed: 0'], inplace=True)
   return desc_sim_df.to_numpy()
 
