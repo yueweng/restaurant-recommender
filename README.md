@@ -38,6 +38,8 @@ Data Collected:
   **restaurant_id**: Id of Restaurant\
   **ratings**: Rating user gave to particular restaurant\
 
+The data is too big and therefore I didn't push it up to GitHub.
+
 ### Workflow
 
 ![](images/workflow.png)
