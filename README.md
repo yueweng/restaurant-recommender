@@ -97,7 +97,9 @@ I created a Web App to showcase my recommenders. User will input a restaurant an
 
 Here are some screenshots:
 
-![](recording1.mov)
+![](images/webhomepage1.png)
+
+![](images/dropdown.png)
 
 ![](images/webapp1.png)
 
