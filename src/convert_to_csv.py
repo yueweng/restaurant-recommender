@@ -8,6 +8,19 @@ import pandas as pd
 """
 
 def convert_db_data_to_csv():
+  """""
+    Get the data from MongoDB and save it into CSV format
+    
+    Parameters
+    ----------
+    None
+    
+
+    Returns
+    -------
+    None
+    
+  """
   user_reviews, restaurants = extract_data_from_db()
   save_restaurants_csv(restaurants)
   save_user_reviews_csv(user_reviews)
@@ -133,5 +146,3 @@ def get_reviews_dataframe(user_reviews_df):
   reviews_df = pd.DataFrame(reviews)
 
   return reviews_df
-
-convert_db_data_to_csv()

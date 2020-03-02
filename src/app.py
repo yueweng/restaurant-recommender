@@ -10,6 +10,10 @@ from recommendations import get_restaurants_df, \
                             get_desc_sim
 import pandas as pd
 
+'''
+  Create a Web Application Using Flask
+'''
+
 app = Flask(__name__,  template_folder='templates')
 
 @app.route('/', methods=['GET', 'POST'])
