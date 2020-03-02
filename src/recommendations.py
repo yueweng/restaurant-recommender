@@ -17,10 +17,6 @@ from nltk.tokenize import word_tokenize
 import nltk
 from sklearn.feature_extraction.text import CountVectorizer
 
-def get_ratings_df(users_df, ratings_df):
-  ratings_df = pd.DataFrame({'userid': reviews_df['userid'], 'restaurant_id': reviews_df['restaurant_id'], 'stars': reviews_df['stars']})
-  return ratings_df
-
 def cosine_similarity_recommendations(restaurants_df, title='Noosh', n=12):
   """
     Calculate the cosine similarity and return the top n recommendations
@@ -29,10 +25,11 @@ def cosine_similarity_recommendations(restaurants_df, title='Noosh', n=12):
     ----------
     restaurants_df: DataFrame
     title: String
+    n: Top n recommendations
 
     Returns
     -------
-    None
+    selected_df: DataFrame
     
   """
   cui = restaurants_df['cuisines'].str.split(", ")
@@ -52,6 +49,23 @@ def cosine_similarity_recommendations(restaurants_df, title='Noosh', n=12):
   return selected_df
 
 def reviews_recommender(restaurants_df, reviews_df, reviews_condensed_df, doc_sim, title='Noosh', n=12):  
+  """
+    Calculate the cosine similarity based on reviews and return the top n recommendations
+    
+    Parameters
+    ----------
+    restaurants_df: DataFrame
+    reviews_df: DataFrame
+    reviews_condensed_df: DataFrame
+    doc_sim: Numpy Array
+    title: String
+    n: Number of Recommendations
+
+    Returns
+    -------
+    selected_df: DataFrame
+    
+  """
   restid = restaurants_df[restaurants_df['title'] == title]['_id'].values[0]
   gein = reviews_condensed_df[reviews_condensed_df['restaurant_id'] == restid].index
   all_indices = doc_sim[gein][0].argsort()[::-1][:n+1]
@@ -64,6 +78,21 @@ def reviews_recommender(restaurants_df, reviews_df, reviews_condensed_df, doc_si
   return selected_df
 
 def description_recommender(restaurants_df, desc_sim, title='Noosh', n=12):
+  """
+    Calculate the cosine similarity from restaurant descriptions and return the top n recommendations
+    
+    Parameters
+    ----------
+    restaurants_df: DataFrame
+    desc_sim: Numpy Array
+    title: String
+    n: Top n recommendations
+
+    Returns
+    -------
+    selected_df: DataFrame
+    
+  """
   desc_restaurants_df = restaurants_df[restaurants_df['description'] != ' ']
 
   rest_descid = restaurants_df[restaurants_df['title'] == title]['_id'].values[0]
@@ -77,23 +106,3 @@ def description_recommender(restaurants_df, desc_sim, title='Noosh', n=12):
   selected_df = restaurants_df[(restaurants_df.index.isin(all_descs)) & ~(restaurants_df.index.isin(desc_in))]
 
   return selected_df
-
-# n = 20
-# restaurants_df = get_restaurants_df()
-# users_df = get_users_df()
-# reviews_df = get_reviews_df()
-# reviews_condensed_df = get_reviews_cond_df()
-# ratings_df = get_ratings_df(users_df, reviews_df)
-# print("                          ")
-# print("Recommender 1 Result: ")
-# print("---------------------------")
-# print(cosine_similarity_recommendations(restaurants_df))
-# print("                          ")
-# print("Recommender 2 Result: ")
-# print("---------------------------")
-# print(reviews_recommender(restaurants_df, reviews_df, reviews_condensed_df))
-# print("                          ")
-# print("Recommender 3 Result: ")
-# print("---------------------------")
-# print(description_recommender(restaurants_df))
-
