@@ -10,12 +10,6 @@ from methods import get_restaurants_df, \
                     get_all_restaurant_names, \
                     get_doc_sim, \
                     get_desc_sim
-from nltk.corpus import stopwords
-import string
-from nltk.tokenize import sent_tokenize
-from nltk.tokenize import word_tokenize
-import nltk
-from sklearn.feature_extraction.text import CountVectorizer
 
 def cosine_similarity_recommendations(restaurants_df, title='Noosh', n=12):
   """

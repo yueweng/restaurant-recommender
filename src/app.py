@@ -15,10 +15,6 @@ app = Flask(__name__,  template_folder='templates')
 @app.route('/', methods=['GET', 'POST'])
 def index():
   restaurants_df = get_restaurants_df()
-  # df = cosine_similarity_recommendations(restaurants_df)
-  # df.fillna(0, inplace=)
-  # li = cosine_similarity_recommendations(restaurants_df, title='Marufuku Ramen SF')
-  # return render_template('index.html', li=li)
   restaurant_names = get_all_restaurant_names(restaurants_df)
   if request.method == 'POST':
     text = request.form['text']
