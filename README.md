@@ -92,6 +92,17 @@ Collaborative Filtering is one method that I wanted to use. This became a challe
 ### Tools Used
 Python, BeautifulSoup, Selenium, Jupyter Notebook, Pandas, MongoDB, Docker, Matplotlib, Flask
 
+### Flask
+I created a Web App to showcase my recommenders. User will input a restaurant and the app will generate the recommender restaurants.
+
+Here are some screenshots:
+
+![](recording1.mov)
+
+![](images/webapp1.png)
+
+![](images/webapp2.png)
+
 ### Future Work
 Personalize recommender based on Reviewers. Depending on where the reviewers go, the ratings they rate, I will like to create a personal recommender based on user's profile.
 
