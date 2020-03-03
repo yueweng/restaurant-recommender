@@ -1,6 +1,6 @@
 import pandas as pd
 import csv
-from backports.functools_lru_cache import lru_cache
+from functools import lru_cache
 
 def get_restaurants_df():
   """
