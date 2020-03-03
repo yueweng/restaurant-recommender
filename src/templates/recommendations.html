@@ -21,16 +21,16 @@
               <span class='description'>
                 <div class='restaurant-name'>
                   <a href="{{row['url']}}">
-                    {{row['title']}}
+                    {{row['title'].decode('utf-8')}}
                   </a>
                 </div>
-                {% if row['ambience'] is defined %}
+                {% if row['ambience'] is string %}
                   <div class='ambience text'>
                     <span>Feels like: </span>
                     <span>{{row['ambience']}}</span>
                   </div>
                 {% endif %}
-                {% if row['cuisines'] is defined %}
+                {% if row['cuisines'] is string %}
                   <div class='cuisines text'>
                     <span>Cuisines: </span>
                     <span>{{row['cuisines']}}</span>
@@ -62,7 +62,7 @@
                 <span class='description'>
                   <div class='restaurant-name'>
                     <a href="{{row['url']}}">
-                      {{row['title']}}
+                      {{row['title'].decode('utf-8')}}
                     </a>
                   </div>
                 </span>
@@ -85,7 +85,7 @@
                 <span class='description'>
                   <div class='restaurant-name'>
                     <a href="{{row['url']}}">
-                      {{row['title']}}
+                      {{row['title'].decode('utf-8')}}
                     </a>
                   </div>
                 </span>
@@ -108,7 +108,7 @@
                 <span class='description'>
                   <div class='restaurant-name'>
                     <a href="{{row['url']}}">
-                      {{row['title']}}
+                      {{row['title'].decode('utf-8')}}
                     </a>
                   </div>
                 </span>

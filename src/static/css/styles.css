@@ -164,6 +164,7 @@ body {
   margin-right: 20px;
   padding: 20px;
   width: 343px;    
+  vertical-align: top;
 }
 .page-two-wrapper .adventurous-wrapper .box-wrapper .grey-box:last-child {
   margin-right: 0px;
