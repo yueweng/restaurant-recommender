@@ -1,6 +1,6 @@
 import pandas as pd
-import sys
 import csv
+from backports.functools_lru_cache import lru_cache
 
 def get_restaurants_df():
   """
@@ -38,6 +38,7 @@ def get_users_df():
   users_df.drop(columns=['Unnamed: 0'], inplace=True)
   return users_df
 
+@lru_cache(maxsize=32)
 def get_reviews_df():
   """
     Get reviews dataframe from csv file
