@@ -132,6 +132,8 @@ def create_dataframe(attributes, original_df):
   df = pd.DataFrame(dict_df)
   return df
 
-def get_all_restaurant_names(restaurants_df):
-  return restaurants_df['title'].values.tolist()
+def get_all_restaurant_names(restaurants_df, reviews_df):
+  uniq_rest_id = reviews_df['restaurant_id'].unique()
+  rest_reviews_df = restaurants_df[restaurants_df['_id'].isin(uniq_rest_id)]
+  return rest_reviews_df['title'].values.tolist()
 

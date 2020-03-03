@@ -19,7 +19,8 @@ app = Flask(__name__,  template_folder='templates')
 @app.route('/', methods=['GET', 'POST'])
 def index():
   restaurants_df = get_restaurants_df()
-  restaurant_names = get_all_restaurant_names(restaurants_df)
+  reviews_df = get_reviews_df()
+  restaurant_names = get_all_restaurant_names(restaurants_df, reviews_df)
   if request.method == 'POST':
     text = request.form['text']
     return redirect(url_for('recommendations', text=text))
@@ -35,7 +36,6 @@ def recommendations(text):
   df1 = cosine_similarity_recommendations(restaurants_df, title=text, n=12)
   df2 = reviews_recommender(restaurants_df, reviews_df, reviews_condensed_df, doc_sim, title=text)
   df3 = description_recommender(restaurants_df, desc_sim, title=text)
-  restaurant_names = get_all_restaurant_names(restaurants_df)
   recommended_df = pd.concat([df1[:1], df2[:1], df3[:1]])
   return render_template('recommendations.html', \
                           df_rec = recommended_df, 

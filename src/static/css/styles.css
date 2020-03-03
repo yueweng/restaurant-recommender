@@ -6,6 +6,10 @@ body {
 .page-one-wrapper {
   position: relative;
 }
+
+.page-one-wrapper .img-background {
+  width: 100%;
+}
 .overlay {
   background: black;
   background-blend-mode: multiply;

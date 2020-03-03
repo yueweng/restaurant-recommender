@@ -62,14 +62,13 @@ def reviews_recommender(restaurants_df, reviews_df, reviews_condensed_df, doc_si
   """
   restid = restaurants_df[restaurants_df['title'] == title]['_id'].values[0]
   gein = reviews_condensed_df[reviews_condensed_df['restaurant_id'] == restid].index
-  all_indices = doc_sim[gein][0].argsort()[::-1][:n+1]
-  recommendation_list = []
-  for ind in all_indices:
-      if ind != gein:
-          recommendation_list.append(reviews_condensed_df.iloc[ind]['restaurant_id'])
+  if gein.any():
+    all_indices = doc_sim[gein][0].argsort()[::-1][:n+1]
 
-  selected_df = restaurants_df[(restaurants_df.index.isin(all_indices)) & ~(restaurants_df.index.isin(gein))]
-  return selected_df
+    selected_df = restaurants_df[(restaurants_df.index.isin(all_indices)) & ~(restaurants_df.index.isin(gein))]
+    return selected_df
+  else:
+    return pd.DataFrame()
 
 def description_recommender(restaurants_df, desc_sim, title='Noosh', n=12):
   """
@@ -87,16 +86,24 @@ def description_recommender(restaurants_df, desc_sim, title='Noosh', n=12):
     selected_df: DataFrame
     
   """
-  desc_restaurants_df = restaurants_df[restaurants_df['description'] != ' ']
-
   rest_descid = restaurants_df[restaurants_df['title'] == title]['_id'].values[0]
-  desc_in = desc_restaurants_df[desc_restaurants_df['_id'] == rest_descid].index
-  all_descs = desc_sim[desc_in][0].argsort()[::-1][:n+1]
-  
-  recommendation_list = []
-  for ind in all_descs:
-      if ind != desc_in:
-          recommendation_list.append(desc_restaurants_df.iloc[ind]['_id'])
-  selected_df = restaurants_df[(restaurants_df.index.isin(all_descs)) & ~(restaurants_df.index.isin(desc_in))]
+  desc_in = restaurants_df[restaurants_df['_id'] == rest_descid].index
+  if desc_in.any():
+    all_descs = desc_sim[desc_in][0].argsort()[::-1][:n+1]
+    
+    selected_df = restaurants_df[(restaurants_df.index.isin(all_descs)) & ~(restaurants_df.index.isin(desc_in))]
 
-  return selected_df
+    return selected_df
+  else:
+    return pd.DataFrame()
+
+# text = input("Enter a Restaurant: ")
+# restaurants_df = get_restaurants_df()
+# reviews_condensed_df = get_reviews_cond_df()
+# reviews_df = get_reviews_df()
+# doc_sim = get_doc_sim()
+# desc_sim = get_desc_sim()
+# df1 = cosine_similarity_recommendations(restaurants_df, title=text, n=12)
+# df2 = reviews_recommender(restaurants_df, reviews_df, reviews_condensed_df, doc_sim, title=text)
+# df3 = description_recommender(restaurants_df, desc_sim, title=text)
+# recommended_df = pd.concat([df1[:1], df2[:1], df3[:1]])
