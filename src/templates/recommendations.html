@@ -17,12 +17,10 @@
         {% if df_rec is defined %}
           {% for idx, row in df_rec.iterrows() %}
             <div class='rest-div'>
-              <img class='restaurant-img' />
+              <img class='restaurant-img' src="{{row['image_url']}}" />
               <span class='description'>
                 <div class='restaurant-name'>
-                  <a href="{{row['url']}}">
                     {{row['title']}}
-                  </a>
                 </div>
                 {% if row['ambience'] is string %}
                   <div class='ambience text'>
@@ -58,12 +56,10 @@
           {% if df1_other is defined %}
             {% for idx, row in df1_other.iterrows() %}
               <div class='rest-div'>
-                <img class='restaurant-img' />
+                <img class='restaurant-img' src="{{row['image_url']}}" />
                 <span class='description'>
                   <div class='restaurant-name'>
-                    <a href="{{row['url']}}">
-                      {{row['title']}}
-                    </a>
+                    {{row['title']}}
                   </div>
                 </span>
                 <span class='stars'>
@@ -81,12 +77,10 @@
           {% if df2_other is defined %}
             {% for idx, row in df2_other.iterrows() %}
               <div class='rest-div'>
-                <img class='restaurant-img' />
+                <img class='restaurant-img' src="{{row['image_url']}}" />
                 <span class='description'>
                   <div class='restaurant-name'>
-                    <a href="{{row['url']}}">
-                      {{row['title']}}
-                    </a>
+                    {{row['title']}}
                   </div>
                 </span>
                 <span class='stars'>
@@ -104,12 +98,10 @@
           {% if df3_other is defined %}
             {% for idx, row in df3_other.iterrows() %}
               <div class='rest-div'>
-                <img class='restaurant-img' />
+                <img class='restaurant-img' src="{{row['image_url']}}" />
                 <span class='description'>
                   <div class='restaurant-name'>
-                    <a href="{{row['url']}}">
-                      {{row['title']}}
-                    </a>
+                    {{row['title']}}
                   </div>
                 </span>
                 <span class='stars'>
