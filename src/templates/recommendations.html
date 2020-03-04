@@ -17,7 +17,7 @@
         {% if df_rec is defined %}
           {% for idx, row in df_rec.iterrows() %}
             <div class='rest-div'>
-              <img class='restaurant-img' src="{{row['image_url']}}" />
+              <img class='restaurant-img' />
               <span class='description'>
                 <div class='restaurant-name'>
                   <a href="{{row['url']}}">
@@ -53,12 +53,12 @@
       <div class='box-wrapper'>
         <div class='grey-box'>
           <div class='text'>
-            Most similar in Cuisines
+            Most similar based on Restaurant Characteristics
           </div>
           {% if df1_other is defined %}
             {% for idx, row in df1_other.iterrows() %}
               <div class='rest-div'>
-                <img class='restaurant-img' src="{{row['image_url']}}" />
+                <img class='restaurant-img' />
                 <span class='description'>
                   <div class='restaurant-name'>
                     <a href="{{row['url']}}">
@@ -81,7 +81,7 @@
           {% if df2_other is defined %}
             {% for idx, row in df2_other.iterrows() %}
               <div class='rest-div'>
-                <img class='restaurant-img' src="{{row['image_url']}}" />
+                <img class='restaurant-img' />
                 <span class='description'>
                   <div class='restaurant-name'>
                     <a href="{{row['url']}}">
@@ -104,7 +104,7 @@
           {% if df3_other is defined %}
             {% for idx, row in df3_other.iterrows() %}
               <div class='rest-div'>
-                <img class='restaurant-img' src="{{row['image_url']}}" />
+                <img class='restaurant-img' />
                 <span class='description'>
                   <div class='restaurant-name'>
                     <a href="{{row['url']}}">
