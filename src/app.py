@@ -43,5 +43,9 @@ def recommendations(text):
                           df2_other=df2[1:11],
                           df3_other=df3[1:11])
 
+@app.errorhandler(500)
+def error_page(e):
+    return render_template('500.html')
+
 if __name__ == '__main__':
     app.run()

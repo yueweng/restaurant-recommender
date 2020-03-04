@@ -235,6 +235,27 @@ body {
   cursor: pointer;
 }
 
+.error-wrapper {
+  position: relative;
+}
+
+.error-wrapper .img-background {
+  width: 100%;
+}
+
+.error-wrapper .error-box {
+  background: white;
+  font-size: 30px;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  position: absolute;
+  right: 0;
+  top: 350px;
+  width: 500px;
+}
+
 .loader {
   display: none;
   border: 10px solid #f3f3f3; /* Light grey */
