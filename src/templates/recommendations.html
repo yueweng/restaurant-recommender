@@ -1,5 +1,7 @@
 <head>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <title>Restaurants Tonight</title>
 </head>
 <body>
   <div class='page-two-wrapper'>
@@ -20,15 +22,17 @@
               <img class='restaurant-img' src="{{row['image_url']}}" />
               <span class='description'>
                 <div class='restaurant-name'>
+                  <a href="{{row['url']}}">
                     {{row['title']}}
+                  </a>
                 </div>
-                {% if row['ambience'] is string %}
+                {% if row['ambience'] is str %}
                   <div class='ambience text'>
                     <span>Feels like: </span>
                     <span>{{row['ambience']}}</span>
                   </div>
                 {% endif %}
-                {% if row['cuisines'] is string %}
+                {% if row['cuisines'] is str %}
                   <div class='cuisines text'>
                     <span>Cuisines: </span>
                     <span>{{row['cuisines']}}</span>
@@ -51,7 +55,7 @@
       <div class='box-wrapper'>
         <div class='grey-box'>
           <div class='text'>
-            Most similar based on Restaurant Characteristics
+            Most similar in Cuisines
           </div>
           {% if df1_other is defined %}
             {% for idx, row in df1_other.iterrows() %}
@@ -59,7 +63,9 @@
                 <img class='restaurant-img' src="{{row['image_url']}}" />
                 <span class='description'>
                   <div class='restaurant-name'>
-                    {{row['title']}}
+                    <a href="{{row['url']}}">
+                      {{row['title']}}
+                    </a>
                   </div>
                 </span>
                 <span class='stars'>
@@ -80,7 +86,9 @@
                 <img class='restaurant-img' src="{{row['image_url']}}" />
                 <span class='description'>
                   <div class='restaurant-name'>
-                    {{row['title']}}
+                    <a href="{{row['url']}}">
+                      {{row['title']}}
+                    </a>
                   </div>
                 </span>
                 <span class='stars'>
@@ -101,7 +109,9 @@
                 <img class='restaurant-img' src="{{row['image_url']}}" />
                 <span class='description'>
                   <div class='restaurant-name'>
-                    {{row['title']}}
+                    <a href="{{row['url']}}">
+                      {{row['title']}}
+                    </a>
                   </div>
                 </span>
                 <span class='stars'>
