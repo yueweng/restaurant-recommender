@@ -26,13 +26,13 @@
                     {{row['title']}}
                   </a>
                 </div>
-                {% if row['ambience'] is defined and row['ambience'] is str %}
+                {% if row['ambience'] is string %}
                   <div class='ambience text'>
                     <span>Feels like: </span>
                     <span>{{row['ambience']}}</span>
                   </div>
                 {% endif %}
-                {% if row['cuisines'] is defined and row['cuisines'] is str %}
+                {% if row['cuisines'] is string %}
                   <div class='cuisines text'>
                     <span>Cuisines: </span>
                     <span>{{row['cuisines']}}</span>
