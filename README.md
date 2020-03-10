@@ -1,5 +1,8 @@
 # Restaurant Recommender
 
+### Slides
+[Restaurant Recommender](https://docs.google.com/presentation/d/1CBDj5Oshk4GpeSsIDm3g39pCO4FgKmNvLwXSpEjifbc/edit?usp=sharing)
+
 ### Premise
 
 ![](images/restaurant.jpg)
@@ -109,9 +112,6 @@ Here are some screenshots:
 
 ### Future Work
 Personalize recommender based on Reviewers. Depending on where the reviewers go, the ratings they rate, I will like to create a personal recommender based on user's profile.
-
-### Slides
-[Restaurant Recommender] (https://docs.google.com/presentation/d/1CBDj5Oshk4GpeSsIDm3g39pCO4FgKmNvLwXSpEjifbc/edit?usp=sharing)
 
 ### Source
 Yelp Website
