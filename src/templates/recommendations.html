@@ -22,7 +22,9 @@
               <img class='restaurant-img' src="{{row['image_url']}}" />
               <span class='description'>
                 <div class='restaurant-name'>
-                  {{row['title']}}
+                  <a href="{{row['url']}}">
+                    {{row['title']}}
+                  </a>
                 </div>
                 {% if row['ambience'] is string %}
                   <div class='ambience text'>
@@ -61,7 +63,9 @@
                 <img class='restaurant-img' src="{{row['image_url']}}" />
                 <span class='description'>
                   <div class='restaurant-name'>
-                    {{row['title']}}
+                    <a href="{{row['url']}}">
+                      {{row['title']}}
+                    </a>
                   </div>
                 </span>
                 <span class='stars'>
@@ -82,7 +86,9 @@
                 <img class='restaurant-img' src="{{row['image_url']}}" />
                 <span class='description'>
                   <div class='restaurant-name'>
-                    {{row['title']}}
+                    <a href="{{row['url']}}">
+                      {{row['title']}}
+                    </a>
                   </div>
                 </span>
                 <span class='stars'>
@@ -103,7 +109,9 @@
                 <img class='restaurant-img' src="{{row['image_url']}}" />
                 <span class='description'>
                   <div class='restaurant-name'>
-                    {{row['title']}}
+                    <a href="{{row['url']}}">
+                      {{row['title']}}
+                    </a>
                   </div>
                 </span>
                 <span class='stars'>
